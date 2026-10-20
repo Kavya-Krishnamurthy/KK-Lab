@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Decode DNA | The KK Lab</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#f9f8f4;color:#273b35;
+ font-family:"DM Sans",sans-serif;line-height:1.8;
+}
+.container{max-width:780px;width:90%;margin:auto}
+nav{padding:25px 0}
+a{color:#426e58;text-decoration:none}
+h1,h2{font-family:"Playfair Display",serif;font-weight:500}
+h1{font-size:clamp(40px,7vw,62px);line-height:1.2}
+h2{font-size:30px}
+p{color:#63716a}
+.tag{font-size:11px;letter-spacing:2px;color:#426e58}
+.lesson{padding:45px 0}
+.illustration{
+ background:#edf2eb;border-radius:16px;
+ padding:30px;text-align:center;margin:30px 0;
+}
+.illustration svg{max-width:260px;width:100%}
+.card{
+ background:#fffefa;border:1px solid #e2e7dd;
+ border-radius:14px;padding:25px;margin:25px 0;
+}
+.bases{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+button{
+ background:#e1ebdf;border:1px solid #9bb49f;
+ color:#273b35;border-radius:10px;
+ padding:14px 20px;font-size:20px;cursor:pointer;
+}
+button:hover{background:#cddfce}
+#result{min-height:30px;color:#426e58;font-weight:600}
+footer{padding:35px 0;border-top:1px solid #e2e7dd}
+</style>
+</head>
+<body>
+<div class="container">
+<nav><a href="learn.html">← Back to Learning Library</a></nav>
+
+<article class="lesson">
+<div class="tag">LESSON 001 · MOLECULAR BIOLOGY</div>
+<h1>The secret language of DNA.</h1>
+<p>Imagine a tiny instruction book inside almost every cell of your body. That book is written using just four chemical letters.</p>
+
+<div class="illustration">
+<svg viewBox="0 0 260 260" fill="none" aria-label="DNA double helix">
+<path d="M70 15 C200 75 60 135 190 245" stroke="#426e58" stroke-width="5" stroke-linecap="round"/>
+<path d="M190 15 C60 75 200 135 70 245" stroke="#bd9b80" stroke-width="5" stroke-linecap="round"/>
+<g stroke="#91ad99" stroke-width="3">
+<path d="M70 15H190"/>
+<path d="M110 45H150"/>
+<path d="M145 75H115"/>
+<path d="M150 105H110"/>
+<path d="M105 135H155"/>
+<path d="M75 165H185"/>
+<path d="M110 195H150"/>
+<path d="M70 245H190"/>
+</g>
+</svg>
+</div>
+
+<h2>Meet the four letters</h2>
+<p>DNA stands for <strong>Deoxyribonucleic Acid</strong>. Its information is encoded using four nitrogenous bases:</p>
+<div class="card">
+<p><strong>A</strong> — Adenine</p>
+<p><strong>T</strong> — Thymine</p>
+<p><strong>C</strong> — Cytosine</p>
+<p><strong>G</strong> — Guanine</p>
+</div>
+
+<h2>The pairing rule</h2>
+<p>In ordinary double-stranded DNA, adenine pairs with thymine, while cytosine pairs with guanine.</p>
+<p>Think of them as molecular partners that help hold the DNA double helix together.</p>
+
+<div class="card" style="text-align:center">
+<div class="tag">MINI LAB · TEST YOUR KNOWLEDGE</div>
+<h2>Find the missing base</h2>
+<p id="question">Which base pairs with A?</p>
+<div class="bases">
+<button onclick="answer('A')">A</button>
+<button onclick="answer('T')">T</button>
+<button onclick="answer('C')">C</button>
+<button onclick="answer('G')">G</button>
+</div>
+<p id="result" aria-live="polite">Tap your answer.</p>
+<button onclick="next()" style="font-size:13px">Next question →</button>
+</div>
+
+<h2>Why does this matter?</h2>
+<p>DNA stores genetic information. Scientists study DNA sequences to investigate inherited traits, genetic variation, diseases, and evolutionary relationships.</p>
+<p>Bioinformatics helps us analyze these sequences using algorithms and software.</p>
+<a href="learn.html">← Return to all lessons</a>
+</article>
+<footer>The KK Lab · Stay curious.</footer>
+</div>
+
+<script>
+const pairs={A:"T",T:"A",C:"G",G:"C"};
+const letters=Object.keys(pairs);
+let current="A";
+let solved=false;
+
+function answer(choice){
+ const result=document.getElementById("result");
+ if(solved)return;
+ if(choice===pairs[current]){
+  result.textContent="✓ Correct! "+current+" pairs with "+choice+".";
+  solved=true;
+ }else{
+  result.textContent="Not quite. Try another letter!";
+ }
+}
+function next(){
+ current=letters[Math.floor(Math.random()*letters.length)];
+ solved=false;
+ document.getElementById("question").textContent="Which base pairs with "+current+"?";
+ document.getElementById("result").textContent="Tap your answer.";
+}
+</script>
+</body>
+</html>
