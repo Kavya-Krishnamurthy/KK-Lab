@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Learn | The KK Lab</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+ --bg:#f9f8f4;
+ --ink:#273b35;
+ --green:#426e58;
+ --line:#e5e8df;
+}
+*{box-sizing:border-box}
+body{
+ margin:0;background:var(--bg);
+ color:var(--ink);font-family:"DM Sans",sans-serif;
+}
+a{text-decoration:none;color:inherit}
+.container{width:min(1050px,90%);margin:auto}
+nav{
+ display:flex;align-items:center;
+ justify-content:space-between;
+ gap:15px;flex-wrap:wrap;padding:24px 0;
+}
+.logo{font:700 25px "Playfair Display",serif}
+.logo span{color:var(--green)}
+.links{display:flex;flex-wrap:wrap;gap:16px;font-size:12px}
+.links a:hover{color:var(--green)}
+h1,h2{font-family:"Playfair Display",serif;font-weight:500}
+h1{font-size:clamp(42px,7vw,65px);margin:12px 0}
+h2{font-size:25px}
+em{color:var(--green)}
+p{color:#68766d;line-height:1.8}
+header.intro{padding:65px 0 45px;max-width:680px}
+.eyebrow{font-size:11px;letter-spacing:2px;color:var(--green);text-transform:uppercase}
+.grid{
+ display:grid;grid-template-columns:repeat(3,1fr);
+ gap:20px;padding-bottom:80px;
+}
+.card{
+ background:#fffefa;border:1px solid var(--line);
+ border-radius:14px;padding:25px;
+}
+.card svg{width:100%;height:110px}
+.card p{font-size:14px}
+.tag{font-size:10px;letter-spacing:1px;color:var(--green)}
+.btn{
+ display:inline-block;background:var(--green);
+ color:white;padding:11px 17px;border-radius:7px;
+ font-size:12px;margin-top:12px;
+}
+footer{text-align:center;border-top:1px solid var(--line);padding:25px;font-size:12px}
+@media(max-width:700px){
+ .grid{grid-template-columns:1fr}
+ header.intro{padding:35px 0}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<nav>
+<a href="index.html" class="logo">the <span>KK</span> lab.</a>
+<div class="links">
+<a href="index.html">Home</a>
+<a href="learn.html">Learn</a>
+<a href="notebook.html">Notebook</a>
+<a href="projects.html">Projects</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+</div>
+</nav>
+
+<header class="intro">
+<div class="eyebrow">The learning library / 001</div>
+<h1>Curiosity is a <em>beautiful thing.</em></h1>
+<p>Welcome to our little learning laboratory. Pick a subject, explore the science, and discover how code makes biology even more fascinating.</p>
+</header>
+
+<div class="grid">
+
+<article class="card">
+<svg viewBox="0 0 220 110" fill="none" aria-label="DNA helix">
+<path d="M55 10 C160 35 55 75 160 100 M160 10 C55 35 160 75 55 100" stroke="#426e58" stroke-width="3"/>
+<path d="M55 10H160 M95 30H120 M95 55H120 M95 80H120 M55 100H160" stroke="#bd9b80" stroke-width="3"/>
+</svg>
+<div class="tag">BIOLOGY / 001</div>
+<h2>Decode DNA</h2>
+<p>Discover how four tiny letters carry the instructions for life.</p>
+<a class="btn" href="dna.html">Start learning ↗</a>
+</article>
+
+<article class="card">
+<svg viewBox="0 0 220 110" fill="none" aria-label="Neural network">
+<g stroke="#9db6a1" stroke-width="2">
+<path d="M35 25L110 20 185 25 M35 25L110 85 185 25 M35 85L110 20 185 85 M35 85L110 85 185 85"/>
+</g>
+<g fill="#e2ebdf" stroke="#426e58" stroke-width="2">
+<circle cx="35" cy="25" r="10"/><circle cx="35" cy="85" r="10"/>
+<circle cx="110" cy="20" r="10"/><circle cx="110" cy="85" r="10"/>
+<circle cx="185" cy="25" r="10"/><circle cx="185" cy="85" r="10"/>
+</g>
+</svg>
+<div class="tag">ARTIFICIAL INTELLIGENCE / 002</div>
+<h2>Machine Learning</h2>
+<p>Understand how algorithms recognize patterns in biological data.</p>
+<p><small>Lesson coming soon</small></p>
+</article>
+
+<article class="card">
+<svg viewBox="0 0 220 110" fill="none" aria-label="Coding terminal">
+<rect x="25" y="10" width="170" height="90" rx="8" stroke="#426e58" stroke-width="2"/>
+<path d="M25 32H195" stroke="#9db6a1" stroke-width="2"/>
+<path d="M85 48L65 65 85 82 M135 48L155 65 135 82 M122 43L99 87" stroke="#426e58" stroke-width="3"/>
+</svg>
+<div class="tag">COMPUTER SCIENCE / 003</div>
+<h2>Python for Biology</h2>
+<p>Write simple programs that answer real scientific questions.</p>
+<p><small>Lesson coming soon</small></p>
+</article>
+
+</div>
+</div>
+<footer>© The KK Lab · Learn something wonderful.</footer>
+</body>
+</html>
