@@ -1,0 +1,417 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f9f8f4">
+<meta name="description" content="The KK Lab — exploring biology through code, AI and curiosity.">
+<title>The KK Lab | Science, Code & Curiosity</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:#f9f8f4;
+  --paper:#fffefa;
+  --ink:#273b35;
+  --muted:#728078;
+  --sage:#dfe9df;
+  --green:#426e58;
+  --peach:#f5e5d8;
+  --line:#e5e8df;
+}
+* {box-sizing:border-box}
+html {scroll-behavior:smooth}
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"DM Sans",sans-serif;
+  line-height:1.7;
+}
+a {color:inherit;text-decoration:none}
+button {font:inherit;cursor:pointer}
+.container {width:min(1100px,90%);margin:auto}
+nav {
+  display:flex;justify-content:space-between;
+  align-items:center;gap:15px;
+  padding:22px 0;
+}
+.logo {
+  font-family:"Playfair Display",serif;
+  font-size:25px;font-weight:700;
+}
+.logo span {color:var(--green)}
+.navlinks {display:flex;gap:22px;font-size:13px}
+.navlinks a:hover {color:var(--green)}
+.eyebrow {
+  font-family:"DM Mono",monospace;
+  font-size:11px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--green);
+}
+.hero {
+  display:grid;grid-template-columns:1.1fr .9fr;
+  align-items:center;gap:35px;
+  padding:85px 0 95px;
+}
+h1,h2,h3 {
+  font-family:"Playfair Display",serif;
+  line-height:1.2;font-weight:500;
+}
+h1 {font-size:clamp(43px,6vw,76px);margin:18px 0}
+h2 {font-size:clamp(32px,4vw,48px);margin:14px 0}
+h3 {font-size:23px;margin:12px 0}
+p {color:#64716b}
+.hero p {font-size:16px;max-width:490px}
+.accent {font-style:italic;color:var(--green)}
+.btn {
+  display:inline-block;border:1px solid var(--green);
+  background:var(--green);color:white;
+  border-radius:7px;padding:12px 21px;
+  margin:15px 10px 0 0;font-size:13px;
+}
+.btn.secondary {background:transparent;color:var(--green)}
+.btn:hover {opacity:.85}
+.art {
+  background:#f0f3ed;border-radius:50%;
+  aspect-ratio:1;display:grid;place-items:center;
+  max-width:390px;margin:auto;
+}
+.art svg {width:83%;height:83%}
+section {padding:75px 0}
+.section-heading {max-width:640px;margin-bottom:35px}
+.grid {display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card {
+  background:var(--paper);border:1px solid var(--line);
+  border-radius:13px;padding:27px;
+  transition:transform .25s,box-shadow .25s;
+}
+.card:hover {transform:translateY(-5px);box-shadow:0 12px 30px #243a2e0b}
+.card svg {height:90px;width:100%;margin-bottom:14px}
+.card p {font-size:14px}
+.tag {
+  display:inline-block;font-family:"DM Mono",monospace;
+  font-size:10px;letter-spacing:1px;
+  color:var(--green);text-transform:uppercase;
+}
+.arrow {font-size:13px;color:var(--green);font-weight:700}
+.soft {background:#edf1ea}
+.notebook {
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:40px;align-items:center;
+}
+.note-art {
+  background:var(--paper);border:1px solid var(--line);
+  border-radius:15px;padding:30px;
+}
+.note-art svg {width:100%;max-height:260px}
+.note {
+  padding:15px 0;border-bottom:1px solid #d9e2d9;
+  font-size:14px;
+}
+.note span {font-family:"DM Mono";color:var(--green);font-size:11px;margin-right:15px}
+.game {
+  background:var(--paper);border:1px solid var(--line);
+  border-radius:16px;padding:35px;
+  max-width:680px;margin:auto;text-align:center;
+}
+.choices {display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:25px 0}
+.base {
+  width:58px;height:58px;border:1px solid #aabdaf;
+  border-radius:12px;background:#edf3eb;
+  font-size:23px;color:var(--ink);font-weight:700;
+}
+.base:hover {background:#d9e8dc}
+#question {font-size:19px}
+#feedback {min-height:28px;font-weight:600;color:var(--green)}
+.about {
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:50px;align-items:center;
+}
+.quote {
+  padding:35px;border-radius:14px;
+  background:var(--peach);
+  font-family:"Playfair Display",serif;
+  font-size:29px;line-height:1.5;
+}
+footer {
+  border-top:1px solid var(--line);
+  padding:32px 0;text-align:center;
+  color:var(--muted);font-size:12px;
+}
+.reveal {animation:rise .7s ease both}
+@keyframes rise {
+  from {opacity:0;transform:translateY(15px)}
+  to {opacity:1;transform:translateY(0)}
+}
+@media(max-width:750px){
+  nav {flex-wrap:wrap}
+  .navlinks {gap:14px;font-size:11px;flex-wrap:wrap}
+  .hero {grid-template-columns:1fr;padding:45px 0 65px}
+  .hero .art {width:80%;max-width:290px}
+  .grid,.notebook,.about {grid-template-columns:1fr}
+  section {padding:55px 0}
+  .quote {font-size:24px}
+  .game {padding:24px 14px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after {animation:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+
+<body>
+<header class="container">
+<nav>
+<a href="#" class="logo">the <span>KK</span> lab<span style="color:#9cae9c">.</span></a>
+<div class="navlinks">
+<a href="#explore">Explore</a>
+<a href="#notebook">Notebook</a>
+<a href="#projects">Projects</a>
+<a href="#about">About</a>
+</div>
+</nav>
+</header>
+
+<main>
+<div class="container hero">
+<div class="reveal">
+<div class="eyebrow">An independent curiosity lab · Est. 2026</div>
+<h1>Where biology meets <span class="accent">beautiful logic.</span></h1>
+<p>Welcome to The KK Lab — a little corner of the internet where we decode biology, explore artificial intelligence, build things with code, and ask wonderfully nerdy questions.</p>
+<a class="btn" href="#explore">Enter the lab ↗</a>
+<a class="btn secondary" href="#notebook">Read the notebook</a>
+</div>
+
+<div class="art reveal">
+<!-- Hand-drawn DNA illustration -->
+<svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hand-drawn DNA double helix">
+<g stroke-linecap="round" stroke-linejoin="round">
+<path d="M95 30 C240 75 65 125 205 165 S65 255 200 280" stroke="#426e58" stroke-width="5"/>
+<path d="M205 30 C60 75 235 125 95 165 S235 255 100 280" stroke="#bd9b80" stroke-width="5"/>
+<g stroke="#94b39e" stroke-width="3">
+<path d="M95 30 L205 30"/>
+<path d="M139 50 L161 50"/>
+<path d="M175 70 L125 70"/>
+<path d="M182 90 L118 90"/>
+<path d="M149 110 L151 110"/>
+<path d="M108 130 L192 130"/>
+<path d="M95 150 L205 150"/>
+<path d="M124 170 L176 170"/>
+<path d="M172 190 L128 190"/>
+<path d="M185 210 L115 210"/>
+<path d="M157 230 L143 230"/>
+<path d="M111 250 L189 250"/>
+<path d="M200 280 L100 280"/>
+</g>
+<g fill="#426e58">
+<circle cx="95" cy="30" r="5"/>
+<circle cx="205" cy="150" r="5"/>
+<circle cx="100" cy="280" r="5"/>
+</g>
+<path d="M35 80 l8 -12 8 12 -8 12z" stroke="#c2a48c" stroke-width="2"/>
+<path d="M248 225 l6 -10 6 10 -6 10z" stroke="#426e58" stroke-width="2"/>
+<circle cx="250" cy="70" r="4" fill="#d3b4a2"/>
+</g>
+<text x="20" y="215" font-size="12" fill="#78917e" font-family="monospace">A · T</text>
+<text x="238" y="125" font-size="12" fill="#78917e" font-family="monospace">G · C</text>
+</svg>
+</div>
+</div>
+
+<section id="explore" class="soft">
+<div class="container">
+<div class="section-heading">
+<div class="eyebrow">01 / The learning corner</div>
+<h2>Big ideas, <span class="accent">little discoveries.</span></h2>
+<p>Science and computer science, explained with curiosity rather than complicated jargon.</p>
+</div>
+
+<div class="grid">
+<article class="card">
+<svg viewBox="0 0 220 100" fill="none" aria-label="DNA drawing">
+<path d="M50 10 C150 40 50 65 150 90 M150 10 C50 40 150 65 50 90" stroke="#426e58" stroke-width="3" stroke-linecap="round"/>
+<path d="M50 10H150 M79 27H121 M91 45H109 M79 65H121 M50 90H150" stroke="#bd9b80" stroke-width="3"/>
+</svg>
+<span class="tag">Biology / 001</span>
+<h3>Decode DNA</h3>
+<p>Meet the four letters that write the instructions for life.</p>
+<a href="#play" class="arrow">Try a mini experiment ↗</a>
+</article>
+
+<article class="card">
+<svg viewBox="0 0 220 100" fill="none" aria-label="Neural network drawing">
+<g stroke="#a1b8a4" stroke-width="2">
+<path d="M40 25L110 15 180 25 M40 25L110 75 180 25 M40 75L110 15 180 75 M40 75L110 75 180 75"/>
+</g>
+<g fill="#e0ebdf" stroke="#426e58" stroke-width="2">
+<circle cx="40" cy="25" r="9"/><circle cx="40" cy="75" r="9"/>
+<circle cx="110" cy="15" r="9"/><circle cx="110" cy="75" r="9"/>
+<circle cx="180" cy="25" r="9"/><circle cx="180" cy="75" r="9"/>
+</g>
+</svg>
+<span class="tag">AI / 002</span>
+<h3>Meet Machine Learning</h3>
+<p>How can computers recognize patterns hidden in biological data?</p>
+<span class="arrow">Lesson coming soon ↗</span>
+</article>
+
+<article class="card">
+<svg viewBox="0 0 220 100" fill="none" aria-label="Code illustration">
+<rect x="30" y="12" width="160" height="77" rx="8" stroke="#426e58" stroke-width="2"/>
+<path d="M30 31H190" stroke="#a1b8a4" stroke-width="2"/>
+<circle cx="42" cy="22" r="3" fill="#bd9b80"/>
+<circle cx="53" cy="22" r="3" fill="#bd9b80"/>
+<path d="M80 47L65 60 80 73 M140 47L155 60 140 73 M123 42L100 79" stroke="#426e58" stroke-width="3" stroke-linecap="round"/>
+</svg>
+<span class="tag">Coding / 003</span>
+<h3>Code the Science</h3>
+<p>Turn biological questions into tiny Python experiments.</p>
+<span class="arrow">Lesson coming soon ↗</span>
+</article>
+</div>
+</div>
+</section>
+
+<section id="play">
+<div class="container">
+<div class="section-heading" style="text-align:center;margin:0 auto 30px">
+<div class="eyebrow">02 / Tiny interactive lab</div>
+<h2>Let's play <span class="accent">scientist.</span></h2>
+<p>DNA has four bases. A pairs with T, and C pairs with G. Can you find the matching partner?</p>
+</div>
+<div class="game">
+<div class="eyebrow">Experiment 001 · DNA pairing</div>
+<p id="question">Which base pairs with A?</p>
+<div class="choices">
+<button class="base" onclick="checkBase('A')">A</button>
+<button class="base" onclick="checkBase('T')">T</button>
+<button class="base" onclick="checkBase('C')">C</button>
+<button class="base" onclick="checkBase('G')">G</button>
+</div>
+<div id="feedback" aria-live="polite">Choose your answer above.</div>
+<p id="score" style="font-size:12px">Correct answers: 0</p>
+<button class="btn secondary" onclick="nextQuestion()">Next DNA puzzle →</button>
+</div>
+</div>
+</section>
+
+<section id="notebook" class="soft">
+<div class="container notebook">
+<div>
+<div class="eyebrow">03 / Field notes</div>
+<h2>The research <span class="accent">notebook.</span></h2>
+<p>A collection of questions, computational experiments, scientific rabbit holes, and everything learned along the way.</p>
+<div class="note"><span>001</span> The Embryo Files — 4D Microscopy</div>
+<div class="note"><span>002</span> Cancer Genomics — The TP53 Story</div>
+<div class="note"><span>003</span> From FASTQ to Biological Insight</div>
+<p style="font-size:12px">Full notebook entries are in development.</p>
+</div>
+<div class="note-art">
+<svg viewBox="0 0 300 260" fill="none" aria-label="Hand-drawn microscope">
+<g stroke="#426e58" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M130 32L180 65 160 95 110 62Z" fill="#e4eee3"/>
+<path d="M169 93L195 116"/>
+<path d="M200 105 C255 160 220 207 175 217"/>
+<path d="M130 105L110 145"/>
+<path d="M80 155H175"/>
+<path d="M125 155V185"/>
+<path d="M105 219H202"/>
+<path d="M87 235H220"/>
+<circle cx="170" cy="179" r="13" fill="#e4eee3"/>
+</g>
+<g fill="#d8bda8">
+<circle cx="70" cy="60" r="7"/>
+<circle cx="242" cy="65" r="5"/>
+<circle cx="253" cy="90" r="3"/>
+</g>
+<path d="M40 195 Q60 170 80 195" stroke="#c6ad98" stroke-width="2"/>
+<text x="30" y="245" fill="#78917e" font-family="monospace" font-size="11">observe · question · discover</text>
+</svg>
+</div>
+</div>
+</section>
+
+<section id="projects">
+<div class="container">
+<div class="section-heading">
+<div class="eyebrow">04 / Things built in the lab</div>
+<h2>Curiosity, but <span class="accent">make it code.</span></h2>
+<p>Independent experiments, computational biology projects, and playful software ideas.</p>
+</div>
+<div class="grid">
+<div class="card">
+<span class="tag">Bioinformatics</span>
+<h3>Cancer Genomics Explorer</h3>
+<p>Investigating TP53 alterations and cancer datasets through computational analysis.</p>
+</div>
+<div class="card">
+<span class="tag">Python / Education</span>
+<h3>Gene Jump</h3>
+<p>A playful evolution-inspired coding game that turns science into an adventure.</p>
+</div>
+<div class="card">
+<span class="tag">Computational Biology</span>
+<h3>Intelligent NGS Pipeline</h3>
+<p>Exploring how raw sequencing reads become meaningful biological insights.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="about" class="soft">
+<div class="container about">
+<div>
+<div class="eyebrow">05 / Behind the lab</div>
+<h2>Hello, I'm <span class="accent">Kavya.</span></h2>
+<p>I'm a bioinformatics enthusiast with a background in computer science and a fascination for the intersection of biology, algorithms, and artificial intelligence.</p>
+<p>The KK Lab is my independent learning space — part educational playground, part research journal, and part collection of experiments that may or may not begin with "what if?"</p>
+<p>Here, curiosity is encouraged, questions are welcome, and learning is always in progress.</p>
+</div>
+<div class="quote">
+"Somewhere between a line of code and a strand of DNA, there's a story worth exploring."
+<div style="font-family:'DM Mono';font-size:11px;color:#927968;margin-top:25px">— NOTES FROM THE KK LAB</div>
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="container">
+<div class="logo">the <span>KK</span> lab.</div>
+<p>Made with curiosity, caffeine & a little computational chaos.</p>
+<p>© <span id="year"></span> The KK Lab · An independent learning project</p>
+</div>
+</footer>
+
+<script>
+const pairs={A:"T",T:"A",C:"G",G:"C"};
+const bases=Object.keys(pairs);
+let current="A";
+let correct=0;
+let answered=false;
+
+function checkBase(choice){
+ const feedback=document.getElementById("feedback");
+ if(answered)return;
+ if(choice===pairs[current]){
+   feedback.textContent="✓ Correct! "+current+" pairs with "+choice+".";
+   correct++;
+   answered=true;
+ }else{
+   feedback.textContent="Not quite! Try another base.";
+ }
+ document.getElementById("score").textContent="Correct answers: "+correct;
+}
+
+function nextQuestion(){
+ current=bases[Math.floor(Math.random()*bases.length)];
+ answered=false;
+ document.getElementById("question").textContent="Which base pairs with "+current+"?";
+ document.getElementById("feedback").textContent="Choose your answer above.";
+}
+
+document.getElementById("year").textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
