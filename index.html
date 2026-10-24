@@ -1,425 +1,465 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#101c1b">
-<meta name="description" content="The KK Lab — Kavya's computational biology, AI and creative coding portfolio.">
-<title>The KK Lab | Biology × Code × AI</title>
-<link href="<a href="dna-viewer.html">DNA Viewer</a>">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>The KK Lab | Kavya Krishnamurthy</title>
+
+<meta name="description"
+content="The KK Lab — a personal portfolio of computational biology, coding projects, research experiences, and writing.">
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-:root{
- --bg:#101c1b;
- --surface:#192b27;
- --line:#355149;
- --mint:#a8e1c0;
- --cream:#f2f6f0;
- --muted:#a4bfb0;
- --peach:#e4b7a3;
+:root {
+  --bg:#FAF9F6;
+  --ink:#30443A;
+  --muted:#65776B;
+  --sage:#77A38C;
+  --rose:#A07B89;
+  --line:#E2E6DF;
+  --soft:#EFF3ED;
 }
-*{box-sizing:border-box}
-body{
- margin:0;background:var(--bg);color:var(--cream);
- font-family:"DM Sans",sans-serif;
- -webkit-font-smoothing:antialiased;
+
+* {
+  box-sizing:border-box;
 }
-a{color:inherit;text-decoration:none}
-button{font:inherit;cursor:pointer}
-.container{width:min(1160px,91%);margin:auto}
-header{
- border-bottom:1px solid var(--line);
- position:relative;z-index:5;
+
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"DM Sans",sans-serif;
 }
-nav{
- min-height:78px;display:flex;align-items:center;
- justify-content:space-between;gap:22px;
+
+a {
+  color:inherit;
+  text-decoration:none;
 }
-.logo{
- font-family:"Playfair Display",serif;
- font-size:27px;font-weight:600;white-space:nowrap;
+
+.container {
+  width:min(1150px,92%);
+  margin:auto;
 }
-.logo span{color:var(--mint)}
-.nav-links{display:flex;gap:23px;align-items:center}
-.nav-links a{
- font-size:13px;color:var(--muted);
- padding:10px 0;transition:color .2s;
-}
-.nav-links a:hover,.nav-links a.active{color:var(--mint)}
-.status{
- font:10px "DM Mono",monospace;
- color:var(--mint);border:1px solid var(--line);
- border-radius:30px;padding:8px 11px;white-space:nowrap;
-}
-.status-dot{
- display:inline-block;width:6px;height:6px;
- background:#92e8b1;border-radius:50%;
- margin-right:6px;box-shadow:0 0 9px #92e8b1;
-}
-.menu{
- display:none;background:transparent;
- color:var(--cream);border:1px solid var(--line);
- border-radius:8px;padding:7px 12px;font-size:21px;
-}
-.hero{
- display:grid;grid-template-columns:1fr 1.1fr;
- gap:48px;align-items:center;
- min-height:610px;padding:65px 0;
-}
-.eyebrow{
- color:var(--mint);font:11px "DM Mono",monospace;
- letter-spacing:1.4px;line-height:1.8;
-}
-h1{
- font-family:"Playfair Display",serif;
- font-weight:500;font-size:clamp(44px,5.6vw,76px);
- line-height:1.13;letter-spacing:-1.5px;
- margin:22px 0;
-}
-h1 em{color:var(--mint);font-weight:400}
-.intro{
- color:var(--muted);font-size:15px;
- line-height:1.9;max-width:470px;
-}
-.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.btn{
- background:var(--mint);color:#14251e;
- padding:13px 20px;border-radius:7px;
- font-size:13px;font-weight:600;
- border:1px solid var(--mint);
- transition:transform .2s,background .2s;
-}
-.btn:hover{transform:translateY(-3px);background:#c6f2d5}
-.btn.outline{background:transparent;color:var(--mint)}
-.btn.outline:hover{background:#203b30}
-.visual{
- position:relative;min-height:430px;
- border:1px solid var(--line);border-radius:18px;
- overflow:hidden;
- background:radial-gradient(ellipse at 45% 50%,#254139,#101c1b 80%);
-}
-#dnaCanvas{display:block;width:100%;height:430px;touch-action:pan-y}
-.visual-label{
- position:absolute;font:10px "DM Mono",monospace;
- color:#a4c6b2;letter-spacing:1px;pointer-events:none;
-}
-.top-label{top:18px;left:18px}
-.bottom-label{bottom:18px;right:18px}
-.visual-controls{
- position:absolute;bottom:18px;left:18px;
- display:flex;gap:7px;
-}
-.visual-controls button{
- background:#172b27d9;border:1px solid #446454;
- color:#b7d4c4;border-radius:20px;
- padding:8px 11px;font:10px "DM Mono",monospace;
-}
-.visual-controls button.active{
- background:#a8e1c0;color:#14251e;border-color:#a8e1c0;
-}
-.bottom-strip{
- display:flex;justify-content:space-between;
- align-items:center;gap:20px;
- border-top:1px solid var(--line);
- padding:24px 0;
-}
-.bottom-strip p{margin:0;color:var(--muted);font-size:12px}
-.bottom-strip span{
- color:var(--mint);font:11px "DM Mono",monospace;
-}
-footer{
- border-top:1px solid var(--line);
- padding:23px 0;color:#91b0a0;font-size:11px;
-}
-.footer-inner{display:flex;justify-content:space-between;gap:15px}
-@media(max-width:900px){
- .status{display:none}
- .nav-links{gap:13px}
- .nav-links a{font-size:11px}
- .hero{gap:25px}
-}
-@media(max-width:700px){
- .menu{display:block}
- .nav-links{
-  display:none;position:absolute;top:76px;
-  left:4.5%;width:91%;background:#192b27;
-  border:1px solid var(--line);border-radius:12px;
-  padding:12px 20px;flex-direction:column;
-  align-items:stretch;gap:0;
-  box-shadow:0 20px 40px #0005;
- }
- .nav-links.open{display:flex}
- .nav-links a{
-  font-size:14px;padding:13px 5px;
+
+/* NAVIGATION */
+
+header {
   border-bottom:1px solid var(--line);
- }
- .nav-links a:last-child{border-bottom:0}
- .hero{
-  grid-template-columns:1fr;
-  padding:48px 0 35px;min-height:0;
- }
- h1{font-size:clamp(44px,11vw,65px)}
- .visual{min-height:350px}
- #dnaCanvas{height:350px}
- .bottom-strip{flex-direction:column;align-items:flex-start}
- .footer-inner{flex-direction:column}
+  background:var(--bg);
+  position:relative;
+  z-index:10;
 }
-@media(prefers-reduced-motion:reduce){
- *,*:before,*:after{transition:none!important}
+
+nav {
+  min-height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:25px;
+}
+
+.logo {
+  font:600 26px "Playfair Display",serif;
+  white-space:nowrap;
+}
+
+.nav-links {
+  display:flex;
+  align-items:center;
+  gap:24px;
+}
+
+.nav-links a {
+  font-size:13px;
+  color:var(--muted);
+}
+
+.nav-links a:hover,
+.nav-links .active {
+  color:var(--ink);
+  text-decoration:underline;
+  text-underline-offset:7px;
+}
+
+.menu {
+  display:none;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:7px 12px;
+  font-size:20px;
+  color:var(--ink);
+  cursor:pointer;
+}
+
+/* INTRODUCTION */
+
+.intro {
+  text-align:center;
+  max-width:720px;
+  margin:75px auto 50px;
+}
+
+.eyebrow {
+  color:var(--rose);
+  font-size:12px;
+  margin-bottom:17px;
+}
+
+h1,h2 {
+  font-family:"Playfair Display",serif;
+  font-weight:500;
+}
+
+h1 {
+  font-size:clamp(48px,7vw,78px);
+  margin:0 0 23px;
+  letter-spacing:-1px;
+}
+
+.intro p {
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.9;
+  margin:0 auto 16px;
+}
+
+.intro-links {
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  margin-top:27px;
+  flex-wrap:wrap;
+}
+
+.btn {
+  display:inline-block;
+  padding:12px 20px;
+  border:1px solid var(--ink);
+  border-radius:7px;
+  font-size:13px;
+  font-weight:600;
+}
+
+.btn.primary {
+  background:var(--ink);
+  color:white;
+}
+
+.btn:hover {
+  opacity:.8;
+}
+
+/* DNA VIEWER SECTION */
+
+.viewer-section {
+  padding:25px 0 75px;
+}
+
+.viewer-heading {
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:20px;
+  margin-bottom:22px;
+}
+
+.section-label {
+  font-size:11px;
+  color:var(--rose);
+  letter-spacing:1px;
+}
+
+.viewer-heading h2 {
+  font-size:36px;
+  margin:10px 0;
+}
+
+.viewer-heading p {
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.7;
+  max-width:630px;
+  margin:0;
+}
+
+.open-viewer {
+  color:var(--rose);
+  font-size:13px;
+  font-weight:600;
+  white-space:nowrap;
+}
+
+/* EMBEDDED EXISTING DNA VIEWER */
+
+.viewer-frame {
+  background:white;
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:8px;
+  overflow:hidden;
+  box-shadow:0 12px 40px rgba(48,68,58,.05);
+}
+
+.viewer-frame iframe {
+  display:block;
+  width:100%;
+  height:740px;
+  border:0;
+  border-radius:10px;
+  background:white;
+}
+
+/* FOOTER */
+
+footer {
+  border-top:1px solid var(--line);
+  padding:25px 0;
+}
+
+.footer-inner {
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  color:#819185;
+  font-size:12px;
+}
+
+/* MOBILE */
+
+@media(max-width:800px) {
+
+  .menu {
+    display:block;
+  }
+
+  .nav-links {
+    display:none;
+    position:absolute;
+    top:75px;
+    left:4%;
+    width:92%;
+    background:white;
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:15px;
+    flex-direction:column;
+    align-items:stretch;
+    gap:0;
+    box-shadow:0 15px 35px #263e361c;
+  }
+
+  .nav-links.open {
+    display:flex;
+  }
+
+  .nav-links a {
+    padding:12px 7px;
+    border-bottom:1px solid var(--line);
+  }
+
+  .nav-links a:last-child {
+    border-bottom:0;
+  }
+
+  .intro {
+    margin:50px auto 35px;
+  }
+
+  h1 {
+    font-size:53px;
+  }
+
+  .viewer-section {
+    padding:15px 0 50px;
+  }
+
+  .viewer-heading {
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .viewer-heading h2 {
+    font-size:30px;
+  }
+
+  .viewer-frame {
+    padding:4px;
+  }
+
+  .viewer-frame iframe {
+    height:800px;
+  }
+
+  .footer-inner {
+    flex-direction:column;
+  }
 }
 </style>
 </head>
 
 <body>
+
 <header>
 <nav class="container">
-<a href="index.html" class="logo">the <span>KK</span> lab.</a>
 
-<div class="nav-links" id="navLinks">
-<a href="index.html" class="active">Home</a>
-<a href="learn.html">Learn</a>
-<a href="notebook.html">Research</a>
-<a href="projects.html">Projects</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
-</div>
+  <a class="logo" href="index.html">
+    the kk lab.
+  </a>
 
-<div class="status">
-<span class="status-dot"></span>LAB ONLINE
-</div>
+  <div class="nav-links" id="navLinks">
+    <a class="active" href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="notebook.html">Research</a>
+    <a href="blog.html">Writing</a>
+    <a href="contact.html">Contact</a>
+  </div>
 
-<button class="menu" id="menuButton"
- aria-label="Open navigation"
- aria-controls="navLinks"
- aria-expanded="false">☰</button>
+  <button class="menu"
+    id="menuButton"
+    aria-label="Open menu"
+    aria-controls="navLinks"
+    aria-expanded="false">
+    ☰
+  </button>
+
 </nav>
 </header>
 
-<main class="container">
-<section class="hero">
-<div>
-<div class="eyebrow">
-KAVYA KRISHNAMURTHY / COMPUTATIONAL BIOLOGY × AI
-</div>
+<main>
 
-<h1>
-Biology is complicated.
-<em>I brought Python.</em>
-</h1>
+<section class="intro container">
 
-<p class="intro">
-I'm Kavya — exploring the intersection of
-biology, algorithms, and artificial intelligence.
-Welcome to The KK Lab, my independent space
-for research, creative coding, and the
-occasional scientific plot twist.
-</p>
+  <div class="eyebrow">
+    Hello, glad you found this space.
+  </div>
 
-<div class="actions">
-<a class="btn" href="projects.html">Explore my work ↗</a>
-<a class="btn outline" href="notebook.html">Research notebook</a>
-</div>
-</div>
+  <h1>Hi, I'm Kavya.</h1>
 
-<div class="visual" id="visual">
-<div class="visual-label top-label">
-FIG 01 / MOLECULAR INTELLIGENCE
-</div>
+  <p>
+    I have a background in computer science and
+    bioinformatics. I enjoy exploring biological
+    questions through data and code, and sharing
+    what I learn along the way.
+  </p>
 
-<canvas id="dnaCanvas"
- aria-label="Animated DNA double helix connected to an artificial neural network">
-</canvas>
+  <p>
+    This website is a space for my projects,
+    research experiences, and occasional writing.
+  </p>
 
-<div class="visual-controls" aria-label="Visualization mode">
-<button class="active" data-mode="fusion">DNA × AI</button>
-<button data-mode="dna">DNA</button>
-<button data-mode="ai">AI Network</button>
-</div>
+  <div class="intro-links">
 
-<div class="visual-label bottom-label">
-MOVE TO INTERACT ↗
-</div>
-</div>
+    <a class="btn primary" href="projects.html">
+      View my projects ↗
+    </a>
+
+    <a class="btn" href="about.html">
+      About me
+    </a>
+
+  </div>
+
 </section>
 
-<div class="bottom-strip">
-<p>Science is serious. Curiosity doesn't have to be.</p>
-<span>PYTHON · GENOMICS · MACHINE LEARNING · BIOINFORMATICS</span>
-</div>
+<section class="viewer-section">
+
+  <div class="container">
+
+    <div class="viewer-heading">
+
+      <div>
+
+        <div class="section-label">
+          INTERACTIVE PROJECT / 001
+        </div>
+
+        <h2>Explore a DNA sequence.</h2>
+
+        <p>
+          Instead of reading through endless strings
+          of A, T, G, and C, explore how DNA bases
+          pair together in an interactive viewer.
+        </p>
+
+      </div>
+
+      <a class="open-viewer"
+         href="dna-viewer.html">
+         Open full viewer ↗
+      </a>
+
+    </div>
+
+    <div class="viewer-frame">
+
+      <iframe
+        src="dna-viewer.html"
+        title="Interactive DNA Viewer"
+        loading="lazy"
+        allowfullscreen>
+      </iframe>
+
+    </div>
+
+  </div>
+
+</section>
+
 </main>
 
 <footer>
+
 <div class="container footer-inner">
-<span>© <span id="year"></span> The KK Lab.</span>
-<span>Made with curiosity & computational chaos.</span>
+
+  <span>
+    © <span id="year"></span> The KK Lab
+  </span>
+
+  <span>
+    A personal portfolio and learning journal.
+  </span>
+
 </div>
+
 </footer>
 
 <script>
-document.getElementById("year").textContent=new Date().getFullYear();
 
-const menuButton=document.getElementById("menuButton");
-const navLinks=document.getElementById("navLinks");
-menuButton.addEventListener("click",()=>{
- const open=navLinks.classList.toggle("open");
- menuButton.setAttribute("aria-expanded",String(open));
- menuButton.setAttribute("aria-label",open?"Close navigation":"Open navigation");
- menuButton.textContent=open?"✕":"☰";
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+const menuButton =
+  document.getElementById("menuButton");
+
+const navLinks =
+  document.getElementById("navLinks");
+
+menuButton.addEventListener("click", () => {
+
+  const open =
+    navLinks.classList.toggle("open");
+
+  menuButton.setAttribute(
+    "aria-expanded",
+    String(open)
+  );
+
+  menuButton.setAttribute(
+    "aria-label",
+    open ? "Close menu" : "Open menu"
+  );
+
+  menuButton.textContent =
+    open ? "✕" : "☰";
+
 });
 
-const visual=document.getElementById("visual");
-const canvas=document.getElementById("dnaCanvas");
-const ctx=canvas.getContext("2d");
-let w=0,h=0,t=0,mode="fusion";
-let pointer={x:-999,y:-999};
-let animationId;
-const reducedMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-function resize(){
- const rect=canvas.getBoundingClientRect();
- const d=Math.min(window.devicePixelRatio||1,2);
- w=rect.width;h=rect.height;
- canvas.width=Math.round(w*d);
- canvas.height=Math.round(h*d);
- ctx.setTransform(d,0,0,d,0,0);
-}
-resize();
-window.addEventListener("resize",resize);
-
-visual.addEventListener("pointermove",e=>{
- const rect=canvas.getBoundingClientRect();
- pointer={x:e.clientX-rect.left,y:e.clientY-rect.top};
- if(reducedMotion)draw();
-});
-visual.addEventListener("pointerleave",()=>{
- pointer={x:-999,y:-999};
- if(reducedMotion)draw();
-});
-
-document.querySelectorAll("[data-mode]").forEach(button=>{
- button.addEventListener("click",()=>{
-  mode=button.dataset.mode;
-  document.querySelectorAll("[data-mode]").forEach(b=>{
-   b.classList.toggle("active",b===button);
-  });
-  if(reducedMotion)draw();
- });
-});
-
-function draw(){
- ctx.clearRect(0,0,w,h);
- const cx=mode==="dna"?w*.5:w*.36;
- const cy=h*.5;
- const amp=Math.min(w*.13,60);
- const helixHeight=h*.75;
- const nodes=[];
-
- if(mode!=="ai"){
-  for(let i=0;i<46;i++){
-   const q=i/45;
-   const y=cy-helixHeight/2+q*helixHeight;
-   const a=q*Math.PI*5+t*.012;
-   const x1=cx+Math.sin(a)*amp;
-   const x2=cx-Math.sin(a)*amp;
-
-   ctx.beginPath();
-   ctx.moveTo(x1,y);
-   ctx.lineTo(x2,y);
-   ctx.strokeStyle="rgba(153,211,184,.48)";
-   ctx.lineWidth=1.4;
-   ctx.stroke();
-
-   [x1,x2].forEach((x,j)=>{
-    const near=Math.hypot(x-pointer.x,y-pointer.y)<38;
-    ctx.beginPath();
-    ctx.arc(x,y,near?5:2.8,0,Math.PI*2);
-    ctx.fillStyle=near?"#F5CEAA":j?"#E3B59F":"#A9E7C6";
-    ctx.fill();
-    nodes.push({x,y});
-   });
-  }
-
-  for(let side=0;side<2;side++){
-   ctx.beginPath();
-   for(let i=0;i<=180;i++){
-    const q=i/180;
-    const y=cy-helixHeight/2+q*helixHeight;
-    const x=cx+(side?-1:1)*Math.sin(q*Math.PI*5+t*.012)*amp;
-    if(i)ctx.lineTo(x,y);
-    else ctx.moveTo(x,y);
-   }
-   ctx.strokeStyle=side?"#D9AB99":"#9DDEB9";
-   ctx.lineWidth=3;
-   ctx.shadowColor=side?"#D9AB99":"#73DBA4";
-   ctx.shadowBlur=10;
-   ctx.stroke();
-   ctx.shadowBlur=0;
-  }
- }
-
- if(mode!=="dna"){
-  const pts=[];
-  const count=26;
-  const networkX=mode==="ai"?w*.5:w*.77;
-
-  for(let i=0;i<count;i++){
-   const a=i*2.39996;
-   const r=15+Math.sqrt(i/count)*Math.min(w*.22,100);
-   pts.push({
-    x:networkX+Math.cos(a)*r*.8,
-    y:h*.5+Math.sin(a)*r
-   });
-  }
-
-  pts.forEach((p,i)=>{
-   pts.forEach((q,j)=>{
-    if(j<=i||Math.abs(i-j)>7)return;
-    ctx.beginPath();
-    ctx.moveTo(p.x,p.y);
-    ctx.lineTo(q.x,q.y);
-    ctx.strokeStyle="rgba(131,213,174,.22)";
-    ctx.lineWidth=.8;
-    ctx.stroke();
-   });
-
-   const near=Math.hypot(p.x-pointer.x,p.y-pointer.y)<36;
-   ctx.beginPath();
-   ctx.arc(p.x,p.y,near?5:3,0,Math.PI*2);
-   ctx.fillStyle=near?"#F5CEAA":"#86DBB3";
-   ctx.fill();
-  });
-
-  if(mode==="fusion"){
-   for(let i=0;i<11;i++){
-    const a=nodes[Math.floor(i*nodes.length/11)];
-    const b=pts[(i*2)%pts.length];
-    if(!a)continue;
-    ctx.beginPath();
-    ctx.moveTo(a.x,a.y);
-    ctx.quadraticCurveTo(w*.59,a.y,b.x,b.y);
-    ctx.strokeStyle=`rgba(156,230,186,${.12+.13*Math.sin(t*.025+i)**2})`;
-    ctx.lineWidth=1;
-    ctx.stroke();
-   }
-  }
- }
-
- if(!reducedMotion){
-  t+=.6;
-  animationId=requestAnimationFrame(draw);
- }
-}
-draw();
-
-document.addEventListener("visibilitychange",()=>{
- if(reducedMotion)return;
- if(document.hidden){
-  cancelAnimationFrame(animationId);
- }else{
-  cancelAnimationFrame(animationId);
-  draw();
- }
-});
 </script>
+
 </body>
 </html>
