@@ -2,28 +2,445 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>The KK Lab - about</title>
-<style>
-body{
- background:#f9f8f4;color:#273b35;
- font-family:Arial,sans-serif;
- margin:0;padding:25px;
-}
-main{max-width:700px;margin:100px auto}
-h1{font-family:Georgia,serif;font-size:45px;font-weight:normal}
-p{color:#728078;line-height:1.8}
-a{color:#426e58;text-decoration:none}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#faf9f6">
+  <meta name="description" content="About Kavya Krishnamurthy and The KK Lab — computational biology, genomics, and learning through projects.">
+  <title>About | The KK Lab</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #faf9f6;
+      --ink: #30443a;
+      --muted: #65776b;
+      --rose: #a07b89;
+      --line: #e2e6df;
+      --sage: #789985;
+      --soft: #eff3ed;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1100px, 90%);
+      margin: auto;
+    }
+
+    /* Navigation */
+
+    header {
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      z-index: 10;
+    }
+
+    nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      font: 600 26px 'Playfair Display', serif;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 7px;
+    }
+
+    .menu {
+      display: none;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 20px;
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    /* Main content */
+
+    main {
+      width: min(780px, 88%);
+      margin: 0 auto;
+      padding: 76px 0 88px;
+    }
+
+    .eyebrow {
+      color: var(--rose);
+      font-size: 11px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    h1, h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      letter-spacing: -0.6px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 67px);
+      line-height: 1.13;
+      margin: 15px 0 29px;
+    }
+
+    h2 {
+      font-size: clamp(27px, 3vw, 34px);
+      line-height: 1.25;
+      margin: 0 0 19px;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.95;
+      margin: 0 0 18px;
+    }
+
+    .lead {
+      font-size: 17px;
+      color: var(--ink);
+    }
+
+    .section {
+      padding-top: 37px;
+      margin-top: 37px;
+      border-top: 1px solid var(--line);
+    }
+
+    .accent {
+      width: 43px;
+      height: 3px;
+      background: var(--sage);
+      border-radius: 3px;
+      margin: 31px 0 0;
+    }
+
+    .ending {
+      margin-top: 32px;
+      padding: 23px 26px;
+      background: var(--soft);
+      border-left: 3px solid var(--sage);
+      border-radius: 0 9px 9px 0;
+    }
+
+    .ending p {
+      margin: 0;
+      color: var(--ink);
+    }
+
+    .next {
+      margin-top: 30px;
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .next a {
+      font-size: 13px;
+      color: var(--rose);
+      font-weight: 600;
+    }
+
+    .next a:hover {
+      text-decoration: underline;
+      text-underline-offset: 5px;
+    }
+
+    /* Footer */
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 25px 0;
+      color: #819185;
+      font-size: 12px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    /* Mobile */
+
+    @media (max-width: 700px) {
+      .menu {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 75px;
+        left: 5%;
+        width: 90%;
+        background: white;
+        border: 1px solid var(--line);
+        border-radius: 11px;
+        padding: 12px 18px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        box-shadow: 0 14px 30px #253c341a;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 12px 5px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav-links a:last-child {
+        border-bottom: 0;
+      }
+
+      main {
+        padding: 49px 0 64px;
+      }
+
+      h1 {
+        margin-bottom: 24px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<a href="index.html">← The KK Lab</a>
+
+<header>
+  <nav class="container">
+
+    <a class="logo" href="index.html">
+      the kk lab.
+    </a>
+
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active" aria-current="page">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="notebook.html">Research</a>
+      <a href="blog.html">Writing</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <button
+      class="menu"
+      id="menuButton"
+      aria-label="Open menu"
+      aria-controls="navLinks"
+      aria-expanded="false"
+    >☰</button>
+
+  </nav>
+</header>
+
 <main>
-<p>THE KK LAB - About / UNDER CONSTRUCTION</p>
-<h1>Something curious is coming.</h1>
-<p>This corner of the lab is currently being developed.</p>
-<a href="index.html">Return home →</a>
+
+  <div class="eyebrow">
+    The person behind the projects
+  </div>
+
+  <h1>A little about me.</h1>
+
+  <p class="lead">
+    Hi, I'm Kavya. Glad you found this space!
+  </p>
+
+  <p>
+    With a background in Computer Science and a
+    master's in Bioinformatics, my interests sit
+    somewhere between biological questions and
+    computational problem solving. I've always been
+    more interested in understanding what we can do
+    <em>with</em> biological data than simply
+    collecting it.
+  </p>
+
+  <p>
+    I'm currently exploring computational biology,
+    cancer genomics, and AI through independent
+    research, hands-on projects, and collaborations.
+    I particularly enjoy turning complex scientific
+    ideas into something understandable, useful,
+    and occasionally interactive.
+  </p>
+
+  <div class="accent" aria-hidden="true"></div>
+
+  <section class="section" aria-labelledby="lab-heading">
+
+    <h2 id="lab-heading">
+      So, what's The KK Lab?
+    </h2>
+
+    <p>
+      The KK Lab is simply my corner of the internet.
+    </p>
+
+    <p>
+      I wanted a place to bring together the things
+      I'm working on without having to squeeze
+      everything into a resume or a LinkedIn update.
+    </p>
+
+    <p>
+      Here you'll find my computational biology
+      projects, research notes, small interactive
+      tools, and occasional writing about things
+      I've tried or found interesting.
+    </p>
+
+    <p>
+      It's also a place where I can experiment with
+      ideas, revisit things I've learned, and
+      hopefully make a few scientific concepts more
+      approachable for anyone curious enough to explore.
+    </p>
+
+  </section>
+
+  <section class="section" aria-labelledby="goals-heading">
+
+    <h2 id="goals-heading">
+      What am I working towards?
+    </h2>
+
+    <p>
+      I'm interested in pursuing further research in
+      computational biology, particularly where
+      computer science, genomics, and machine
+      learning overlap.
+    </p>
+
+    <p>
+      For now, I'm focusing on building stronger
+      technical skills, gaining practical research
+      experience, and putting together work that
+      reflects what I actually know and what I'm
+      still learning.
+    </p>
+
+    <p>
+      This website will probably evolve as I do.
+      Some pages will be polished, some will be
+      works in progress, and there will almost
+      certainly be a few experiments that seemed
+      like a great idea at 11 PM.
+    </p>
+
+    <p>
+      That's part of the process.
+    </p>
+
+  </section>
+
+  <div class="ending">
+    <p>
+      Thanks for stopping by. Feel free to look around!
+    </p>
+  </div>
+
+  <div class="next">
+    <a href="projects.html">
+      Explore my projects ↗
+    </a>
+
+    <a href="notebook.html">
+      Read my research notes ↗
+    </a>
+  </div>
+
 </main>
+
+<footer>
+  <div class="container footer-inner">
+
+    <span>
+      © <span id="year"></span> The KK Lab
+    </span>
+
+    <span>
+      A personal portfolio and learning journal.
+    </span>
+
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent =
+    new Date().getFullYear();
+
+  const menuButton =
+    document.getElementById('menuButton');
+
+  const navLinks =
+    document.getElementById('navLinks');
+
+  menuButton.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+
+    menuButton.setAttribute(
+      'aria-expanded',
+      String(open)
+    );
+
+    menuButton.setAttribute(
+      'aria-label',
+      open ? 'Close menu' : 'Open menu'
+    );
+
+    menuButton.textContent = open ? '✕' : '☰';
+  });
+</script>
+
 </body>
 </html>
