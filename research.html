@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Research | The KK Lab</title>
+
+<meta name="description"
+content="Research interests, explorations, and contributions in computational biology, genomics, and AI.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #fcfcf9;
+  --ink: #252b28;
+  --muted: #68736d;
+  --green: #416e5b;
+  --pale: #edf3ed;
+  --line: #e3e8e1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "DM Sans", sans-serif;
+  line-height: 1.75;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--green);
+}
+
+/* Navigation */
+
+header {
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+}
+
+.nav {
+  max-width: 1120px;
+  margin: auto;
+  padding: 19px 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo {
+  font-family: "Libre Baskerville", serif;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.logo span {
+  color: #729a80;
+}
+
+.nav-links {
+  display: flex;
+  gap: 23px;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.nav-links a.active {
+  color: var(--green);
+  font-weight: 700;
+}
+
+/* Main layout */
+
+.container {
+  max-width: 1060px;
+  margin: auto;
+  padding: 0 26px;
+}
+
+.hero {
+  padding: 85px 0 65px;
+  border-bottom: 1px solid var(--line);
+}
+
+.eyebrow {
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--green);
+}
+
+h1, h2, h3 {
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+h1 {
+  font-size: clamp(38px, 6vw, 62px);
+  margin: 16px 0 23px;
+  letter-spacing: -1.5px;
+}
+
+.hero p {
+  font-size: 17px;
+  color: var(--muted);
+  max-width: 680px;
+  line-height: 1.9;
+}
+
+/* Simple scientific illustration */
+
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1.5fr .5fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.science-art {
+  width: 100%;
+  max-width: 230px;
+  opacity: .85;
+}
+
+/* Sections */
+
+.section {
+  padding: 70px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.section-heading {
+  font-size: 28px;
+  margin: 10px 0 18px;
+}
+
+.section-intro {
+  color: var(--muted);
+  max-width: 700px;
+  margin-bottom: 35px;
+}
+
+/* Research interests */
+
+.interests {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.interest {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 25px;
+}
+
+.interest h3 {
+  font-size: 17px;
+  margin: 0 0 12px;
+}
+
+.interest p {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Research articles */
+
+.research-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 30px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: center;
+}
+
+.research-card:first-of-type {
+  border-top: 1px solid var(--line);
+}
+
+.card-meta {
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--green);
+}
+
+.research-card h3 {
+  font-size: 23px;
+  margin: 13px 0;
+}
+
+.research-card p {
+  font-size: 14px;
+  color: var(--muted);
+  max-width: 650px;
+  margin-bottom: 17px;
+}
+
+.read-link {
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.card-arrow {
+  font-size: 28px;
+  color: var(--green);
+}
+
+/* Closing */
+
+.closing {
+  background: var(--pale);
+  padding: 35px 40px;
+  border-radius: 8px;
+}
+
+.closing p {
+  max-width: 720px;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+footer {
+  padding: 35px 20px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Mobile */
+
+@media(max-width: 750px) {
+
+  .nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    gap: 16px;
+  }
+
+  .hero {
+    padding: 55px 0;
+  }
+
+  .hero-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .science-art {
+    max-width: 145px;
+  }
+
+  .interests {
+    grid-template-columns: 1fr;
+  }
+
+  .research-card {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+
+  .card-arrow {
+    display: none;
+  }
+
+  .section {
+    padding: 50px 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="index.html" class="logo">
+      The KK Lab<span>.</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="research.html" class="active">Research</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="container hero-layout">
+
+    <div>
+      <div class="eyebrow">The KK Lab / Research</div>
+
+      <h1>Research &amp; Explorations<span style="color:#729a80">.</span></h1>
+
+      <p>
+        My interests lie at the intersection of computer science,
+        genomics, and computational biology.
+      </p>
+
+      <p>
+        This is where I document research-related contributions,
+        interesting datasets I've explored, and the questions
+        I'm currently learning to investigate.
+      </p>
+    </div>
+
+    <!-- Hand-drawn inspired DNA illustration -->
+
+    <svg class="science-art"
+         viewBox="0 0 200 260"
+         fill="none"
+         xmlns="http://www.w3.org/2000/svg"
+         role="img"
+         aria-label="Simple DNA illustration">
+
+      <path d="M55 15 C160 65 40 115 145 165 C180 190 150 225 80 245"
+            stroke="#416e5b"
+            stroke-width="3"
+            stroke-linecap="round"/>
+
+      <path d="M145 15 C40 65 160 115 55 165 C20 190 50 225 120 245"
+            stroke="#9bb8a5"
+            stroke-width="3"
+            stroke-linecap="round"/>
+
+      <g stroke="#a7b8aa" stroke-width="2">
+        <line x1="55" y1="15" x2="145" y2="15"/>
+        <line x1="95" y1="40" x2="105" y2="40"/>
+        <line x1="122" y1="65" x2="78" y2="65"/>
+        <line x1="105" y1="90" x2="95" y2="90"/>
+        <line x1="75" y1="115" x2="125" y2="115"/>
+        <line x1="95" y1="140" x2="105" y2="140"/>
+        <line x1="145" y1="165" x2="55" y2="165"/>
+        <line x1="155" y1="190" x2="45" y2="190"/>
+        <line x1="125" y1="215" x2="75" y2="215"/>
+        <line x1="80" y1="245" x2="120" y2="245"/>
+      </g>
+
+      <circle cx="55" cy="15" r="4" fill="#416e5b"/>
+      <circle cx="145" cy="15" r="4" fill="#9bb8a5"/>
+      <circle cx="80" cy="245" r="4" fill="#416e5b"/>
+      <circle cx="120" cy="245" r="4" fill="#9bb8a5"/>
+    </svg>
+
+  </div>
+</section>
+
+<!-- RESEARCH INTERESTS -->
+
+<section class="section">
+  <div class="container">
+
+    <div class="eyebrow">Areas of interest</div>
+    <h2 class="section-heading">What I'm interested in</h2>
+
+    <p class="section-intro">
+      I'm particularly interested in how computational approaches
+      can help us understand biological systems and make sense
+      of complex datasets.
+    </p>
+
+    <div class="interests">
+
+      <div class="interest">
+        <h3>Computational Genomics</h3>
+        <p>
+          Exploring gene expression, genomic variation,
+          and molecular data to understand biological processes.
+        </p>
+      </div>
+
+      <div class="interest">
+        <h3>AI &amp; Machine Learning</h3>
+        <p>
+          Interested in developing and applying computational
+          methods to biological research problems.
+        </p>
+      </div>
+
+      <div class="interest">
+        <h3>Multi-Omics &amp; Data Integration</h3>
+        <p>
+          Understanding how different molecular datasets
+          can be connected to investigate biological questions.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH CONTRIBUTIONS -->
+
+<section class="section">
+  <div class="container">
+
+    <div class="eyebrow">Research notes &amp; contributions</div>
+    <h2 class="section-heading">Recent explorations</h2>
+
+    <p class="section-intro">
+      A collection of research-related experiences,
+      analyses, and things I've learned while working
+      with biological data and computational tools.
+    </p>
+
+    <article class="research-card">
+
+      <div>
+        <div class="card-meta">
+          October 2026 · Volunteer Beta Testing
+        </div>
+
+        <h3>
+          <a href="mcp-genelab.html">
+            Exploring Space Biology Through AI:
+            My Experience with MCP-GeneLab
+          </a>
+        </h3>
+
+        <p>
+          My experience testing MCP-GeneLab, exploring NASA's
+          space biology datasets, knowledge graphs,
+          gene expression, DNA methylation, microbial
+          abundance, and connected literature research.
+        </p>
+
+        <a href="mcp-genelab.html" class="read-link">
+          Read research note →
+        </a>
+      </div>
+
+      <a href="mcp-genelab.html"
+         class="card-arrow"
+         aria-label="Read MCP-GeneLab research note">
+        ↗
+      </a>
+
+    </article>
+
+  </div>
+</section>
+
+<!-- RESEARCH DIRECTION -->
+
+<section class="section">
+  <div class="container">
+
+    <div class="eyebrow">Looking ahead</div>
+
+    <h2 class="section-heading">
+      Where I'd like to take this
+    </h2>
+
+    <div class="closing">
+      <p>
+        I'm continuing to develop my research skills through
+        independent learning, hands-on projects, and opportunities
+        to contribute to scientific work. I'm particularly
+        interested in collaborating on computational biology
+        projects involving genomics, biological data analysis,
+        and machine learning.
+        This space will grow as I explore new questions,
+        methods, and research opportunities.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  © <span id="year"></span> The KK Lab · Kavya Krishnamurthy
+</footer>
+
+<script>
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
+</script>
+
+</body>
+</html>
