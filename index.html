@@ -10,9 +10,15 @@
 </style>
 </head>
 <body>
-<header><nav class="wrap"><a class="brand" href="index.html">the kk lab.</a><div class="links"><a href="index.html">Home</a><a href="about.html">About</a><a href="projects.html">Projects</a><a href="notebook.html">Research</a><a href="blog.html">Writing</a><a class="active" href="dna-viewer.html">DNA Viewer</a></div></nav></header>
+<header><nav class="wrap"><a class="brand" href="index.html">the kk lab.</a>
+  <div class="links"><a href="index.html">Home</a>
+    <a href="about.html">About</a>
+   <!-- <a href="projects.html">Projects</a> -->
+    <a href="notebook.html">Research</a>
+    <a href="contact.html">Research</a>
+    <a class="active" href="dna-viewer.html">DNA Viewer</a></div></nav></header>
 <main class="wrap">
-<div class="eyebrow">INTERACTIVE / BIOLOGY</div><h1>DNA, but make it visual.</h1><p class="lede">A small sequence explorer. Follow a DNA double helix, inspect its base pairs, and see what those letters actually mean. Change the sequence below to try your own.</p>
+<h1>DNA, but make it visual.</h1><p class="lede">A small sequence explorer. Follow a DNA double helix, inspect its base pairs, and see what those letters actually mean. Change the sequence below to try your own.</p>
 <div class="toolbar"><button class="btn" id="prev" aria-label="Previous base pair">← Previous</button><button class="btn primary" id="play">▶ Scan</button><button class="btn" id="next" aria-label="Next base pair">Next →</button><button class="btn" id="reset">Reset</button><span class="status" id="status" aria-live="polite">PAIR 1 / 24</span></div>
 <div class="layout"><div class="panel"><div class="panel-head"><p class="panel-title">Double helix</p><p class="panel-sub">A simplified, rotating B-DNA-inspired view. Tap any rung to inspect it.</p></div><div class="helix-stage"><span class="helix-label">5′ / STRAND 1</span><svg id="helix" role="img" aria-label="Interactive DNA double helix showing complementary base pairs" viewBox="0 0 480 440" preserveAspectRatio="xMidYMid meet"></svg></div><div class="legend"><span><i class="dot" style="background:var(--a)"></i>Adenine</span><span><i class="dot" style="background:var(--t)"></i>Thymine</span><span><i class="dot" style="background:var(--g)"></i>Guanine</span><span><i class="dot" style="background:var(--c)"></i>Cytosine</span></div></div>
 <div class="side"><div class="panel"><div class="section"><div class="kicker">Reading head</div><div class="big" id="pairTitle">Pair 1</div><div class="pairbox"><span class="base A" id="base1">A</span><span class="bond" id="bond">··</span><span class="base T" id="base2">T</span></div><div class="small" id="pairInfo">Adenine pairs with thymine through two hydrogen bonds.</div><div class="metrics"><div class="metric"><b id="position">1</b><span>Position</span></div><div class="metric"><b id="length">24</b><span>Base pairs</span></div><div class="metric"><b id="gc">50%</b><span>GC content</span></div></div></div><div class="section"><div class="kicker">A note about this model</div><div class="facts">The two strands run in <strong>opposite directions</strong> (antiparallel). <strong>A–T</strong> pairs have 2 hydrogen bonds; <strong>G–C</strong> pairs have 3. The animation is an educational representation, not a physical simulation.</div></div></div>
