@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="My experience beta-testing MCP-GeneLab, exploring NASA space biology datasets, knowledge graphs, multi-omics and AI-assisted research.">
+  <title>Exploring Space Biology Through AI | The KK Lab</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #fcfcf9;
+      --paper: #fff;
+      --ink: #252b28;
+      --muted: #68736d;
+      --green: #416e5b;
+      --pale: #edf3ed;
+      --line: #e3e8e1;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+      font-size: 16px;
+      line-height: 1.85;
+    }
+
+    a { color: var(--green); text-underline-offset: 4px; }
+    a:hover { color: #244a39; }
+
+    .progress {
+      position: fixed;
+      z-index: 20;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: var(--green);
+    }
+
+    header {
+      background: rgba(252,252,249,.96);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: auto;
+      padding: 19px 26px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      font-family: "Libre Baskerville", serif;
+      font-size: 19px;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 23px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .nav-links a.active { color: var(--green); font-weight: 700; }
+
+    .article {
+      max-width: 760px;
+      padding: 70px 26px 100px;
+      margin: auto;
+    }
+
+    .eyebrow, .date, .section-number {
+      font-family: "DM Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    h1, h2 {
+      font-family: "Libre Baskerville", Georgia, serif;
+      font-weight: 400;
+      line-height: 1.45;
+      letter-spacing: -.5px;
+    }
+
+    h1 {
+      font-size: clamp(32px, 5vw, 48px);
+      margin: 18px 0 17px;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin: 0 0 20px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.7;
+      max-width: 610px;
+      margin: 0 0 25px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .rule {
+      border: 0;
+      border-top: 1px solid var(--line);
+      margin: 38px 0;
+    }
+
+    p { margin: 0 0 21px; }
+
+    .intro { font-size: 17px; }
+
+    .toc {
+      background: var(--pale);
+      padding: 24px 28px;
+      border-radius: 7px;
+      margin: 40px 0 60px;
+    }
+
+    .toc-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .toc a {
+      display: block;
+      color: #465b4e;
+      font-size: 13px;
+      text-decoration: none;
+      padding: 4px 0;
+    }
+
+    .toc a:hover { text-decoration: underline; }
+
+    section { margin: 0 0 58px; scroll-margin-top: 30px; }
+
+    .section-number { margin-bottom: 10px; }
+
+    .query {
+      border-left: 3px solid #a2b9a8;
+      background: #f5f8f3;
+      padding: 17px 21px;
+      margin: 26px 0;
+      font-size: 14px;
+      font-style: italic;
+    }
+
+    .dataset-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 22px 0 28px;
+    }
+
+    .dataset-list span {
+      border: 1px solid var(--line);
+      background: var(--paper);
+      padding: 5px 11px;
+      border-radius: 4px;
+      font-family: "DM Mono", monospace;
+      font-size: 11px;
+      color: var(--green);
+    }
+
+    .takeaway {
+      padding: 25px 28px;
+      background: var(--pale);
+      border-radius: 7px;
+      margin: 32px 0;
+      font-family: "Libre Baskerville", serif;
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .resources {
+      border-top: 1px solid var(--line);
+      padding-top: 28px;
+      margin-top: 60px;
+    }
+
+    .resources h2 { font-size: 20px; }
+
+    .resources a {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 35px;
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    footer {
+      text-align: center;
+      border-top: 1px solid var(--line);
+      padding: 28px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .article { padding-top: 42px; }
+      .nav { align-items: flex-start; flex-direction: column; }
+      .nav-links { gap: 15px; }
+      .toc { padding: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="progress" id="progress"></div>
+
+  <header>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="logo" href="index.html">The KK Lab<span style="color:#729a80">.</span></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="research.html" class="active">Research</a>
+        <a href="projects.html">Projects</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <article class="article">
+      <div class="eyebrow">Research Notes / Computational Biology</div>
+
+      <h1>Exploring Space Biology Through AI: My Experience with MCP-GeneLab</h1>
+
+      <p class="subtitle">
+        Exploring NASA's biological datasets, knowledge graphs,
+        and what AI-assisted tools could mean for scientific research.
+      </p>
+
+      <div class="meta">
+        <span>October 2026</span>
+        <span>·</span>
+        <span>By Kavya Krishnamurthy</span>
+        <span>·</span>
+        <span>7 min read</span>
+      </div>
+
+      <hr class="rule">
+
+      <p class="intro">
+        I've been looking for opportunities to get more involved in
+        computational biology research, particularly projects where I
+        can apply my background in computer science and bioinformatics
+        while learning from real scientific work.
+      </p>
+
+      <p>
+        While independent learning and personal projects have been
+        valuable, I've also wanted to contribute to something beyond
+        my own experiments. Even in a small capacity, being involved
+        in the development of research tools felt like a good place
+        to start.
+      </p>
+
+      <p>
+        That's what interested me about volunteering to beta-test
+        <a href="https://github.com/sbl-sdsc/mcp-genelab" target="_blank" rel="noopener noreferrer">MCP-GeneLab</a>,
+        a tool that allows researchers to explore NASA's space biology
+        datasets using AI assistants like ChatGPT.
+      </p>
+
+      <p>
+        I was curious about two things: how well an AI assistant could
+        work with structured scientific data, and whether this approach
+        could make biological research more accessible without losing
+        the technical detail that makes the analysis meaningful.
+      </p>
+
+      <div class="toc">
+        <div class="toc-title">In this article</div>
+        <a href="#data">01 — Getting familiar with the data</a>
+        <a href="#analysis">02 — From genes to microbes</a>
+        <a href="#pubmed">03 — Connecting PubMed</a>
+        <a href="#experience">04 — Thoughts on the experience</a>
+        <a href="#reflection">05 — Why this mattered to me</a>
+      </div>
+
+      <section id="data">
+        <div class="section-number">01 / The knowledge graph</div>
+        <h2>Getting familiar with the data</h2>
+
+        <p>
+          MCP-GeneLab connects to the SPOKE-GeneLab Knowledge Graph,
+          which brings together information from NASA's Open Science
+          Data Repository (OSDR).
+        </p>
+
+        <p>
+          Essentially, it connects spaceflight missions, studies,
+          experiments, genes, and other biological measurements in a
+          way that allows researchers to explore relationships
+          between them.
+        </p>
+
+        <p>
+          I started by understanding the structure of the knowledge
+          graph, the organisms represented, and how studies were
+          connected to their assays.
+        </p>
+
+        <div class="query">
+          "Describe the SPOKE-GeneLab knowledge graph and visualize
+          its schema."
+        </div>
+
+        <p>
+          Coming from a computer science background, I found the
+          knowledge graph itself quite interesting. It's one thing
+          to learn about graph databases, and another to see how
+          they're being used to organize actual biological research.
+        </p>
+
+        <p>
+          The idea of asking scientific questions in plain English
+          instead of manually navigating datasets was appealing,
+          although I was equally interested in seeing how well it
+          worked beyond simple queries.
+        </p>
+      </section>
+
+      <section id="analysis">
+        <div class="section-number">02 / Exploring the studies</div>
+        <h2>From genes to microbes</h2>
+
+        <p>
+          Once I understood the structure, I explored several NASA
+          datasets, including OSD-244, OSD-48, OSD-267, and OSD-161.
+        </p>
+
+        <div class="dataset-list">
+          <span>OSD-244</span>
+          <span>OSD-48</span>
+          <span>OSD-267</span>
+          <span>OSD-161</span>
+        </div>
+
+        <p>
+          With <strong>OSD-244</strong>, I looked at differential
+          gene expression across experimental comparisons, generated
+          volcano plots, and explored genes shared between different
+          time points.
+        </p>
+
+        <div class="query">
+          "Find the common differentially expressed genes and
+          create a Venn diagram to visualize their overlaps."
+        </div>
+
+        <p>
+          I then moved to <strong>OSD-48</strong>, where I investigated
+          DNA methylation alongside gene expression. One of the
+          questions I explored was whether genes with increased
+          promoter methylation also showed reduced expression.
+        </p>
+
+        <p>
+          This was particularly interesting because it involved
+          connecting two different types of molecular data rather
+          than analyzing them separately.
+        </p>
+
+        <p>
+          With <strong>OSD-267</strong>, I explored microbial
+          abundance data, comparing results from DESeq2 and ANCOM-BC
+          and looking for overlapping bacteria and fungi across assays.
+        </p>
+
+        <p>
+          I also worked with <strong>OSD-161</strong>, exploring
+          experimental factors, differential expression, and human
+          ortholog mapping, along with broader questions about
+          spaceflight studies involving different anatomical structures.
+        </p>
+
+        <p>
+          There was quite a bit of switching between biological topics,
+          but that's also what I enjoyed about it. Each dataset
+          introduced a different question, and I could follow that
+          question into another analysis.
+        </p>
+      </section>
+
+      <section id="pubmed">
+        <div class="section-number">03 / Literature connections</div>
+        <h2>The part I found most useful</h2>
+
+        <p>
+          One thing I hadn't explored much before was connecting
+          different research tools through an AI assistant.
+        </p>
+
+        <p>
+          During the testing, I used PubMed alongside MCP-GeneLab to
+          search for publications related to genes and microorganisms
+          identified in the analyses.
+        </p>
+
+        <p>This was probably my favorite part of the experience.</p>
+
+        <p>
+          Being able to move from exploring a dataset to looking up
+          related scientific literature within the same workflow
+          was genuinely useful.
+        </p>
+
+        <p>
+          Of course, finding a paper doesn't mean a biological
+          relationship has been established. There's still the work
+          of reading, evaluating, and interpreting the evidence.
+          But it made the initial exploration much easier.
+        </p>
+
+        <p>
+          It also gave me a better idea of how tools like MCP could
+          fit into a larger research workflow, particularly when
+          working with different databases and data types.
+        </p>
+      </section>
+
+      <section id="experience">
+        <div class="section-number">04 / Beta-testing notes</div>
+        <h2>A few thoughts on the experience</h2>
+
+        <p>
+          My role was to test the tool, explore its capabilities,
+          document the interactions, and provide feedback.
+        </p>
+
+        <p>
+          I appreciated how easily I could move between studies,
+          request visualizations, and ask follow-up questions
+          without having to start over each time.
+        </p>
+
+        <p>
+          There were also areas where I felt the experience could
+          be improved, particularly clearer explanations of some
+          statistical outputs, easier access to underlying results,
+          and better options for exporting data and figures.
+        </p>
+
+        <p>
+          I think those details matter when a tool is intended for
+          scientific research. Making data easier to access is useful,
+          but being able to verify and interpret it is just as important.
+        </p>
+      </section>
+
+      <section id="reflection">
+        <div class="section-number">05 / Personal reflection</div>
+        <h2>Why this experience mattered to me</h2>
+
+        <p>
+          I'm interested in pursuing research in computational biology,
+          particularly where genomics, computational methods, and
+          AI overlap.
+        </p>
+
+        <p>
+          At this stage, I'm trying to build that interest into
+          something more practical through independent projects,
+          learning new methods, and finding opportunities to
+          participate in research-related work.
+        </p>
+
+        <p>
+          Volunteering for MCP-GeneLab was one such opportunity.
+        </p>
+
+        <p>
+          It gave me a chance to work with real biological datasets,
+          explore a research tool under development, and contribute
+          feedback from a user's perspective.
+        </p>
+
+        <p>
+          I also came away with a better understanding of how
+          knowledge graphs and AI-assisted tools could support
+          scientific investigation. And a few more things I'd like
+          to learn, which seems to be the usual outcome whenever
+          I explore something new.
+        </p>
+
+        <p>
+          I'm hoping to become more involved in research projects
+          and collaborations as I continue developing my skills.
+          Experiences like this are useful not just for what I learn
+          technically, but also for understanding how research tools
+          are built, evaluated, and used by the scientific community.
+        </p>
+
+        <div class="takeaway">
+          For now, I'm glad I signed up. It was a small contribution,
+          but a worthwhile one, and I'd be happy to be involved in
+          more work like this.
+        </div>
+      </section>
+
+      <div class="resources">
+        <h2>References & project links</h2>
+        <a href="https://github.com/sbl-sdsc/mcp-genelab" target="_blank" rel="noopener noreferrer">MCP-GeneLab — GitHub repository ↗</a>
+        <a href="https://github.com/BaranziniLab/spoke_genelab" target="_blank" rel="noopener noreferrer">SPOKE-GeneLab Knowledge Graph ↗</a>
+        <a href="https://osdr.nasa.gov/bio/repo" target="_blank" rel="noopener noreferrer">NASA Open Science Data Repository ↗</a>
+        <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener noreferrer">PubMed ↗</a>
+      </div>
+
+      <a class="back" href="research.html">← Back to Research</a>
+    </article>
+  </main>
+
+  <footer>
+    © <span id="year"></span> The KK Lab · Research notes by Kavya Krishnamurthy
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const progress = document.getElementById("progress");
+
+    function updateProgress() {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const percentage = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+      progress.style.width = Math.min(100, Math.max(0, percentage)) + "%";
+    }
+
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+    updateProgress();
+  </script>
+</body>
+</html>
